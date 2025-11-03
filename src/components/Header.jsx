@@ -1,32 +1,41 @@
-import { Rocket } from "lucide-react";
+import React from 'react';
+import { Rocket, Menu } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-export default function Header() {
+const Header = () => {
   return (
-    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/70 border-b border-black/5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-2">
-            <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 text-white shadow-sm">
-              <Rocket className="h-5 w-5" />
-            </div>
-            <span className="text-lg font-semibold tracking-tight">NobleVerse</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-700">
-            <a href="#features" className="hover:text-slate-900 transition-colors">Features</a>
-            <a href="#suite" className="hover:text-slate-900 transition-colors">NobleSuite</a>
-            <a href="#intelligence" className="hover:text-slate-900 transition-colors">Intelligence</a>
-            <a href="#contact" className="hover:text-slate-900 transition-colors">Contact</a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <button className="hidden sm:inline-flex items-center rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-white">
-              Book a demo
-            </button>
-            <button className="inline-flex items-center rounded-lg bg-slate-900 px-3.5 py-1.5 text-sm font-medium text-white shadow hover:bg-slate-800">
-              Launch App
-            </button>
-          </div>
+    <motion.header
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="sticky top-0 z-50 border-b border-white/10 bg-[#0A0A0B]/70 backdrop-blur-xl"
+    >
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="#" className="flex items-center gap-2">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-fuchsia-500 shadow-[0_0_20px_-4px_rgba(99,102,241,0.6)]">
+            <Rocket className="h-4 w-4" />
+          </span>
+          <span className="text-sm font-semibold tracking-wide text-white/90">NobleVerse</span>
+        </a>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          <a href="#features" className="text-sm text-white/70 hover:text-white transition-colors">Features</a>
+          <a href="#solutions" className="text-sm text-white/70 hover:text-white transition-colors">Solutions</a>
+          <a href="#pricing" className="text-sm text-white/70 hover:text-white transition-colors">Pricing</a>
+          <a href="#docs" className="text-sm text-white/70 hover:text-white transition-colors">Docs</a>
+        </nav>
+
+        <div className="hidden items-center gap-3 md:flex">
+          <button className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80 shadow-sm backdrop-blur hover:bg-white/10 transition-colors">Sign in</button>
+          <button className="rounded-lg bg-gradient-to-r from-indigo-500 to-fuchsia-500 px-4 py-2 text-sm font-medium text-white shadow-[0_0_24px_-6px_rgba(99,102,241,0.8)] transition-shadow hover:shadow-[0_0_32px_-4px_rgba(99,102,241,0.9)]">Get started</button>
         </div>
+
+        <button className="inline-flex md:hidden">
+          <Menu className="h-6 w-6 text-white/80" />
+        </button>
       </div>
-    </header>
+    </motion.header>
   );
-}
+};
+
+export default Header;

@@ -1,35 +1,91 @@
-import { ArrowRight } from "lucide-react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import Spline from '@splinetool/react-spline';
+import { ArrowRight } from 'lucide-react';
 
-export default function Hero() {
+const Hero = () => {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-[1]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90rem_50rem_at_top_right,rgba(79,70,229,0.15),transparent_60%)]" />
+    <section className="relative isolate min-h-[92vh] overflow-hidden">
+      {/* Spline 3D Scene */}
+      <div className="absolute inset-0 z-0">
+        <Spline
+          scene="https://prod.spline.design/Ao-qpnKUMOxV2eTA/scene.splinecode"
+          style={{ width: '100%', height: '100%' }}
+        />
       </div>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="py-16 sm:py-24">
-          <div className="max-w-3xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
-              AI-native OS for modern freight
-            </p>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Unify logistics. Inject intelligence. Move the world faster.
-            </h1>
-            <p className="mt-5 text-lg leading-7 text-slate-600">
-              NobleVerse is a shipment intelligence ecosystem that centralizes routing, tracking, documents, and automation into a single, proactive platform.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="#features" className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-white font-medium shadow hover:bg-indigo-500">
-                Explore the platform
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a href="#features" className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-slate-800 font-medium hover:bg-slate-50">
-                See NobleSuite
-              </a>
-            </div>
-          </div>
+
+      {/* Subtle gradient and vignette overlays that do not block interactions */}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(60%_60%_at_50%_20%,rgba(99,102,241,0.25)_0%,rgba(10,10,11,0.6)_60%,rgba(10,10,11,0.9)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(to_top,rgba(10,10,11,0.8),transparent_30%)]" />
+
+      {/* Content */}
+      <div className="relative z-20 mx-auto flex max-w-7xl flex-col items-center px-6 pt-28 text-center sm:px-8">
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70 backdrop-blur"
+        >
+          Glossy, fluid intelligence for modern logistics
+        </motion.span>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          className="max-w-3xl bg-gradient-to-b from-white via-white to-white/70 bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-6xl"
+        >
+          The unified, intelligent freight stack
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.35 }}
+          className="mt-5 max-w-2xl text-balance text-base text-white/70 sm:text-lg"
+        >
+          Orchestrate planning, automation, and AI-native visibility across your network with a
+          glossy, dark, and immersive experience.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.45 }}
+          className="mt-8 flex flex-col items-center gap-3 sm:flex-row"
+        >
+          <a
+            href="#get-started"
+            className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 px-6 py-3 text-sm font-medium text-white shadow-[0_0_40px_-12px_rgba(99,102,241,0.8)] transition-all hover:shadow-[0_0_56px_-10px_rgba(99,102,241,0.9)]"
+          >
+            Get started
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+          <a
+            href="#demo"
+            className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm text-white/80 backdrop-blur transition-colors hover:bg-white/10"
+          >
+            Live demo
+          </a>
+        </motion.div>
+
+        {/* Floating HUD accents */}
+        <div className="pointer-events-none relative mt-16 grid w-full max-w-5xl grid-cols-2 gap-4 sm:grid-cols-4">
+          {["Realtime ETA", "Autonomous Reroute", "Carbon Tracker", "Risk Guard"].map((label, i) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.6 + i * 0.06 }}
+              className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-left text-xs text-white/70 backdrop-blur"
+            >
+              {label}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Hero;

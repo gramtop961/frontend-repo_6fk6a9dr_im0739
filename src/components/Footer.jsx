@@ -1,22 +1,20 @@
-export default function Footer() {
+import React from 'react';
+
+const Footer = () => {
+  const year = new Date().getFullYear();
   return (
-    <footer id="contact" className="border-t border-black/5 bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div>
-            <p className="text-sm font-medium text-slate-800">NobleVerse</p>
-            <p className="mt-1 text-sm text-slate-500">
-              © {new Date().getFullYear()} NobleVerse. All rights reserved.
-            </p>
-          </div>
-          <div className="flex items-center gap-4 text-sm text-slate-600">
-            <a href="#" className="hover:text-slate-900">Privacy</a>
-            <a href="#" className="hover:text-slate-900">Security</a>
-            <a href="#" className="hover:text-slate-900">Status</a>
-            <a href="#" className="hover:text-slate-900">Support</a>
-          </div>
-        </div>
+    <footer className="relative z-10 border-t border-white/10 bg-[#0A0A0B]/80">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-10 text-center text-sm text-white/60 sm:flex-row sm:px-8">
+        <p>© {year} NobleVerse. All rights reserved.</p>
+        <nav className="flex items-center gap-5">
+          <a href="#privacy" className="hover:text-white">Privacy</a>
+          <a href="#security" className="hover:text-white">Security</a>
+          <a href="#status" className="hover:text-white">Status</a>
+          <a href="#support" className="hover:text-white">Support</a>
+        </nav>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
